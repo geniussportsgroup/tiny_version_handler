@@ -2,6 +2,7 @@ package version
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
@@ -23,7 +24,7 @@ func init() {
 
 	file, err := ioutil.ReadFile("./version.json")
 	if err != nil {
-		panic("cannot open version.json")
+		panic(fmt.Sprintf("cannot open version.json: %s", err.Error()))
 	}
 
 	info := Info{}
