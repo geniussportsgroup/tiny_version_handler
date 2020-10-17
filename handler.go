@@ -32,7 +32,7 @@ func init() {
 
 	response = gin.H{
 		"Number":     info.Number,
-		"Name":       info.Number,
+		"Name":       info.Name,
 		"Date":       info.Date,
 		"LaunchDate": launchDate,
 		"Comment":    info.Comment,
