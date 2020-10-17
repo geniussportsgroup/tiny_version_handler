@@ -1,20 +1,42 @@
 package version
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
-const versionNumber = "0.1.1"
-const versionName = "Hanover"
-const comment = "Testing version endpoint"
 
-var versionDate = "January 2022"
 var launchDate = time.Now().Format(time.ANSIC)
 
-var response gin.H = gin.H{"Number": versionNumber,
-	"Name": versionName, "Date": versionDate, "LaunchDate": launchDate,
-	"Comment": comment}
+var response gin.H
+
+type Info struct {
+	Name    string
+	Date    string
+	Number  string
+	Comment string
+}
+
+func init() {
+
+	file, err := ioutil.ReadFile("version.json")
+	if err != nil {
+		panic("cannot open version.json")
+	}
+
+	info := Info{}
+	err = json.Unmarshal([]byte(file), &info)
+
+	response = gin.H{
+		"Number":     info.Number,
+		"Name":       info.Number,
+		"Date":       info.Date,
+		"LaunchDate": launchDate,
+		"Comment":    info.Comment,
+	}
+}
 
 func Handler(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
