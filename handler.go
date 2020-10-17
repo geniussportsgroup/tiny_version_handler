@@ -21,7 +21,7 @@ type Info struct {
 
 func init() {
 
-	file, err := ioutil.ReadFile("version.json")
+	file, err := ioutil.ReadFile("./version.json")
 	if err != nil {
 		panic("cannot open version.json")
 	}
