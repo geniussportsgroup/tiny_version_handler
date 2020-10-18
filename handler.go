@@ -18,6 +18,7 @@ type Info struct {
 	Date    string
 	Number  string
 	Comment string
+	Notes   []string
 }
 
 func init() {
@@ -36,6 +37,7 @@ func init() {
 		"Date":       info.Date,
 		"LaunchDate": launchDate,
 		"Comment":    info.Comment,
+		"Notes":      info.Notes,
 	}
 }
 
